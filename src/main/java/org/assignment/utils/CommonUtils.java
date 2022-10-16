@@ -86,7 +86,7 @@ public class CommonUtils {
 		return random.nextInt(3300) + 300;
 	}
 
-	private static boolean isValidWord(String str, String[] words) {
+	private static boolean isValidPath(String str, String[] words) {
 		for (String word : words) {
 			if (!str.contains(word)) {
 				return false;
@@ -112,20 +112,20 @@ public class CommonUtils {
 		return true;
 	}
 
-	public static List<String> getPath(final int n, final String[] syllables, final String currentWord) { // example of N = 3
-		List<String> wordList = new ArrayList<>();
+	public static List<String> getPath(final int n, final String[] paths, final String currentPath) { // example of N = 3
+		List<String> pathList = new ArrayList<>();
 		if (n == 0) {
-			if (isValidWord(currentWord, syllables)) {
-				wordList.add(currentWord);
-				return wordList;
+			if (isValidPath(currentPath, paths)) {
+				pathList.add(currentPath);
+				return pathList;
 			}
 		} else {
-			for (String syllable : syllables) {
-				List<String> t = getPath(n - 1, syllables, currentWord + syllable);
-				wordList.addAll(t);
+			for (String path : paths) {
+				List<String> t = getPath(n - 1, paths, currentPath + path);
+				pathList.addAll(t);
 			}
 		}
-		return wordList;
+		return pathList;
 	}
 
 	public static void pathPrint(String path) {
